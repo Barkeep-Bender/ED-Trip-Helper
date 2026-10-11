@@ -8,6 +8,39 @@ Press **F9**, point at your target, press **F9** again, and make a cup of tea. T
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-%E2%98%95-FF8C00)](https://buymeacoffee.com/bendersordoexchao)
 
+## How it looks
+
+Point at your target and press F9 again...
+
+![Point at your target, then press F9 again](screenshots/06-point-at-target.jpg)
+
+...Supercruise Assist flies you in...
+
+![SC Assist has the wheel](screenshots/07-sc-assist.jpg)
+
+...and the docking computer takes it from there.
+
+![Docking granted, throttle zeroed](screenshots/10-docking-granted.jpg)
+
+<details>
+<summary><b>Every step of a trip (click to expand)</b></summary>
+
+| Step | What's happening |
+| --- | --- |
+| ![](screenshots/01-loaded.jpg) | Script loaded |
+| ![](screenshots/02-launching.jpg) | F9 pressed: launching |
+| ![](screenshots/03-adc-flying-out.jpg) | Docking computer flies you out, waiting for traffic |
+| ![](screenshots/04-clearing-mass-lock.jpg) | Clearing mass lock |
+| ![](screenshots/05-engaging-supercruise.jpg) | Engaging supercruise |
+| ![](screenshots/06-point-at-target.jpg) | Point at your target, press F9 again |
+| ![](screenshots/07-sc-assist.jpg) | Supercruise Assist has the wheel |
+| ![](screenshots/08-closing-in.jpg) | Dropped out: closing in for 18 s |
+| ![](screenshots/09-requesting-docking.jpg) | Requesting docking |
+| ![](screenshots/10-docking-granted.jpg) | Docking granted, throttle zeroed, ADC lands you |
+| ![](screenshots/11-aborted.jpg) | F12 aborts at any point |
+
+</details>
+
 ## What you need
 
 - Windows 10 or 11
@@ -30,7 +63,7 @@ Press **F9**, point at your target, press **F9** again, and make a cup of tea. T
 | --- | --- |
 | F9 | Start a trip (docked or in normal space). Press again once you're pointing at the target |
 | F9 in supercruise | Already in supercruise? Point at the target and press once - straight to Supercruise Assist and docking |
-| F10 | Request docking only |
+| F10 | Dropped out near a station yourself? Flies in at full throttle for 18 s, then requests docking (same as the end of an F9 trip) |
 | F11 | Check the script can see Elite and has admin rights |
 | F12 | Abort and zero the throttle |
 

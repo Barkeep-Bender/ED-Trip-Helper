@@ -53,7 +53,8 @@ F11:: Say("Active program: " WinGetProcessName("A") "   Admin: " (A_IsAdmin ? "y
 ;        fly you in, then request docking (ADC lands you)
 ;        Already in supercruise (e.g. after your own jumps)? Lock the station,
 ;        point at it, press F9 once - it goes straight to SC Assist and docking.
-;  F10 = just request docking (use this first to test/tune)
+;  F10 = dropped out near a station yourself? Full throttle toward it for
+;        DOCK_DELAY_SEC (18 s), then request docking - same as the end of F9
 ;  F12 = abort (throttle to zero, macro stops)
 ;
 ;  Ship needs: Advanced Docking Computer + Supercruise Assist module.
@@ -154,7 +155,7 @@ F10:: {
         Say("Busy with a trip - press F12 to abort it first.", 4000)
         return
     }
-    SetTimer RequestDocking, -1
+    SetTimer ApproachAndDock, -1            ; same as the end of an F9 trip: close in, then request
 }
 #HotIf
 F12:: Abort()
@@ -186,8 +187,16 @@ RunTrip() {
     if !WaitUntil(() => !FlagOn(FLAG_SC), 0)
         return
 
-    Say("Dropped out. Closing in for " DOCK_DELAY_SEC " s before requesting docking...")
     Sleep 1000
+    ApproachAndDock()
+}
+
+; After the drop (or when you've dropped out yourself): full throttle toward the
+; station for DOCK_DELAY_SEC, then request docking (with retries).
+ApproachAndDock() {
+    global Running
+    Running := true
+    Say("Closing in for " DOCK_DELAY_SEC " s before requesting docking...")
     Tap("Speed100")                         ; the drop leaves throttle at zero - close the gap
     Sleep DOCK_DELAY_SEC * 1000
     if Running
