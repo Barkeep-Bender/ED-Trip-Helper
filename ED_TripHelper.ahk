@@ -21,8 +21,12 @@ if !A_IsAdmin {
 }
 
 
+; All hotkeys only work while Elite is the active window, so F8-F12 stay
+; free for other programs the rest of the time.
 ; F8 = key test: after 3 s, presses UiUp 3x (scan codes) then 3x (normal method)
+#HotIf WinActive("ahk_exe EliteDangerous64.exe")
 F8:: KeyTest()
+#HotIf
 KeyTest() {
     Say("Key test in 3 s - click into the window you want to test", 3000)
     Sleep 3000
@@ -45,7 +49,9 @@ KeyTest() {
 }
 
 ; F11 = diagnostic: shows which program Windows thinks is active
+#HotIf WinActive("ahk_exe EliteDangerous64.exe")
 F11:: Say("Active program: " WinGetProcessName("A") "   Admin: " (A_IsAdmin ? "yes" : "no"), 6000)
+#HotIf
 ; =====================================================================
 ;  Elite Dangerous trip helper:  Launch -> Supercruise -> Drop -> Dock
 ; ---------------------------------------------------------------------
@@ -62,7 +68,7 @@ F11:: Say("Active program: " WinGetProcessName("A") "   Admin: " (A_IsAdmin ? "y
 ;  (Supercruise Assist parks you in orbital cruise, so it never lands).
 ;  Lock your destination in the LEFT PANEL (Navigation tab) before pressing F9,
 ;  and leave the panel on the Navigation tab - the script counts tabs from there.
-;  F9/F10 only work while Elite is the active window.
+;  All hotkeys (F8-F12) only work while Elite is the active window.
 ; =====================================================================
 
 ; ---------- YOUR KEYBINDS: change these to match Elite's Options > Controls ----------
@@ -117,12 +123,13 @@ SLOW_MODE := false     ; true = about one keypress per second
 
 ; ---------- MESSAGE DISPLAY ----------
 OSD_FONT      := "Segoe UI"   ; font name
-OSD_FONT_SIZE := 20           ; text size
+OSD_FONT_SIZE := 16           ; text size
 OSD_COLOR     := "FF8C00"     ; text colour (Elite orange)
 OSD_BG        := "000000"     ; background colour (black)
 OSD_X         := 20           ; position from left of screen
 OSD_Y         := 20           ; position from top of screen
-OSD_WIDTH     := 900          ; box width - long messages wrap
+OSD_WIDTH     := 760          ; box width - long messages wrap
+OSD_OPACITY   := 170          ; 0 = invisible, 255 = solid (affects text and background)
 
 ; ---------- internals (no need to touch) ----------
 ED_DIR        := EnvGet("USERPROFILE") "\Saved Games\Frontier Developments\Elite Dangerous"
@@ -157,8 +164,8 @@ F10:: {
     }
     SetTimer ApproachAndDock, -1            ; same as the end of an F9 trip: close in, then request
 }
-#HotIf
 F12:: Abort()
+#HotIf
 
 Say("Loaded - by Bendersordoexchao.com.au. F9 trip, F10 dock, F11 check, F12 abort.", 5000)
 
@@ -410,7 +417,7 @@ Say(msg, ms := 0) {
     }
     OSDText.Value := "ED helper: " msg
     OSD.Show("NoActivate x" OSD_X " y" OSD_Y " AutoSize")
-    try WinSetTransparent(235, OSD.Hwnd)   ; after Show - a hidden window can't be found
+    try WinSetTransparent(OSD_OPACITY, OSD.Hwnd)   ; after Show - a hidden window can't be found
     SetTimer HideOSD, (ms ? -ms : 0)       ; a new message cancels any pending hide
 }
 

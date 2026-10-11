@@ -67,6 +67,8 @@ Point at your target and press F9 again...
 | F11 | Check the script can see Elite and has admin rights |
 | F12 | Abort and zero the throttle |
 
+The keys only work while Elite is the active window, so F9-F12 stay free for other programs the rest of the time.
+
 Settings (timings, key sequences, message box style, slow mode for troubleshooting) are at the top of the script.
 
 ## Good to know
