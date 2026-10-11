@@ -57,6 +57,8 @@ F11:: Say("Active program: " WinGetProcessName("A") "   Admin: " (A_IsAdmin ? "y
 ;  F12 = abort (throttle to zero, macro stops)
 ;
 ;  Ship needs: Advanced Docking Computer + Supercruise Assist module.
+;  Orbital stations and fleet carriers only - NOT planetary ports/settlements
+;  (Supercruise Assist parks you in orbital cruise, so it never lands).
 ;  Lock your destination in the LEFT PANEL (Navigation tab) before pressing F9,
 ;  and leave the panel on the Navigation tab - the script counts tabs from there.
 ;  F9/F10 only work while Elite is the active window.

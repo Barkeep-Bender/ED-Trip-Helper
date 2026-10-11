@@ -40,7 +40,7 @@ Settings (timings, key sequences, message box style, slow mode for troubleshooti
 
 - It only presses keys you could press yourself, when you tell it to. It never flies unattended or does hyperspace jumps.
 - It reads Elite's own status and journal files; it doesn't read your screen or modify the game.
-- Tested with orbital stations and fleet carriers. Surface ports are untested.
+- **Orbital stations and fleet carriers only.** It doesn't work with planetary ports or settlements: Supercruise Assist parks you in orbital cruise instead of dropping you near the port, so it never gets to land.
 - It's a third-party tool sending keys to Elite - use at your own risk.
 
 ## Licence
